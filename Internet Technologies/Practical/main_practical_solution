@@ -1,0 +1,279 @@
+---------------------------------- Practical.html --------------------------------------------------------------
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Internet Technologies Practical</title>
+  </head>
+  <body>
+    <!-- The form will process the data to practical_process.jsp -->
+    <form action="practical_process.jsp">
+      First Name:
+      <input type="text" name="firstName" placeholder="First Name" />
+      <br />
+      <br />
+      Last Name:
+      <input type="text" name="lastName" placeholder="Last Name" />
+      <br />
+      <br />
+      Email id:
+      <!-- Validating email by using input type = "email" -->
+      <input type="email" name="email" placeholder="Email-Id" />
+      <br />
+      <br />
+      Mobile Number:
+      <input type="text" name="phone" placeholder="Mobile Number" />
+      <br />
+      <br />
+      Gender:
+      <!-- Gender: male is selected by default -->
+      <input type="radio" name="gender" value="male" checked /> Male
+      <input type="radio" name="gender" value="female" /> Female
+      <input type="radio" name="gender" value="other" /> Other
+      <br />
+      <br />
+      <!-- Date of Birth dropdown in dd/mm/yy format -->
+      Date Of Birth:
+      <input type="date" name="dob" />
+      <br />
+      <br />
+      Address:
+      <input type="text" name="add1" placeholder="House Number" />
+      <input type="text" name="add2" placeholder="Street Number" />
+      <input type="text" name="add3" placeholder="Locality" />
+      <br />
+      <br />
+      <input type="text" name="add4" placeholder="City" />
+      <input type="text" name="add5" placeholder="State" />
+      <input type="text" name="add6" placeholder="Country" />
+      <input type="text" name="add7" placeholder="Pin" />
+      <br />
+      <br />
+      Course:
+      <!-- Dropdown menu for selecting the courses -->
+      <select name="course">
+        <option value="Computer Science">Computer Science (Min %: 95)</option>
+        <option value="Mathematical Science">
+          Mathematical Science (Min %: 93)
+        </option>
+        <option value="Political Science">Political Science (Min %: 91)</option>
+        <option value="Mathematics">Mathematics (Min %: 89)</option>
+        <option value="History">History (Min %: 87)</option>
+      </select>
+      <br />
+      <br />
+      Marks in Class 12:
+      <br />
+     <!--  Input are of type = "number" to allow only numeric values -->
+      Subject 1:
+      <input type="number" name="marks1" />
+      <br />
+      Subject 2:
+      <input type="number" name="marks2" />
+      <br />
+      Subject 3:
+      <input type="number" name="marks3" />
+      <br />
+      Subject 4:
+      <input type="number" name="marks4" />
+      <br />
+      Subject 5:
+      <input type="number" name="marks5" />
+      <br />
+      <br />
+      <input type="submit" value="Submit Form" />
+    </form>
+  </body>
+</html>
+
+------------------------------------------------------------ practical_process.jsp ---------------------------------------------------------------------
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<html>
+    <body>
+       <!--  Getting the variables from the form -->
+        <c:set var="firstName" value="${param.firstName}"/>  
+        <c:set var="lastName" value="${param.lastName}"/>  
+        <c:set var="email" value="${param.email}"/>  
+        <c:set var="phone" value="${param.phone}"/>  
+        <c:set var="gender" value="${param.gender}"/>  
+        <c:set var="dob" value="${param.dob}"/>  
+        <c:set var="add1" value="${param.add1}"/>  
+        <c:set var="add2" value="${param.add2}"/>  
+        <c:set var="add3" value="${param.add3}"/>  
+        <c:set var="add4" value="${param.add4}"/>  
+        <c:set var="add5" value="${param.add5}"/>  
+        <c:set var="add6" value="${param.add6}"/>  
+        <c:set var="add7" value="${param.add7}"/>  
+        <c:set var="course" value="${param.course}"/>  
+        <c:set var="marks1" value="${param.marks1}"/>  
+        <c:set var="marks2" value="${param.marks2}"/>  
+        <c:set var="marks3" value="${param.marks3}"/>  
+        <c:set var="marks4" value="${param.marks4}"/>  
+        <c:set var="marks5" value="${param.marks5}"/>  
+        <c:set var="error" value="true"/>
+        <!-- Checking for the inputs length using fn:length(str)  -->
+        <c:set var="firstNameLength" value="${fn:length(firstName)}" />
+        <c:set var="lastNameLength" value="${fn:length(lastName)}" />
+        <c:set var="phoneLength" value="${fn:length(phone)}" />
+        <c:set var="pinLength" value="${fn:length(add7)}" />
+        <!-- Condition for checking if any of the marks is less than 40 -->
+        <c:if test="${marks1 < 40 || marks2 < 40 || marks3 < 40 || marks4 < 40 || marks5 < 40}">
+            <c:redirect url="redirect.jsp"/>
+        </c:if>
+        <!-- Checking the firstName should not exceed 20 characters and setting the error value to false -->
+        <c:if test="${firstNameLength > 20}">
+           <br> First Name should not exceed 20 characters.
+           <c:set var="error" value="false"/>
+        </c:if>
+        <!-- Checking the lastName should not exceed 20 characters and setting the error value to false -->
+        <c:if test="${lastNameLength > 20}">
+            <br>Last Name should not exceed 20 characters.
+            <c:set var="error" value="false"/>
+        </c:if>
+        <!-- Checking the phone number lengh should not exceed 10 characters and setting the error value to false -->
+        <c:if test="${phoneLength != 10}">
+            <br>Phone number should be 10 digits long.
+            <c:set var="error" value="false"/>
+        </c:if>
+        <!-- Checking the city name should not exceed 20 characters and setting the error value to false -->
+        <c:if test="${cityLength > 20}">
+            <br> City name should not exceed 20 characters.
+            <c:set var="error" value="false"/>
+        </c:if>
+        <!-- Checking the state name should not exceed 20 characters and setting the error value to false -->
+        <c:if test="${stateLength > 20}">
+            <br> State name should not exceed 20 characters.
+            <c:set var="error" value="false"/>
+        </c:if>
+        <!-- Checking the country name should not exceed 20 characters and setting the error value to false -->
+        <c:if test="${countryLength > 20}">
+            <br> Country name should not exceed 20 characters.
+            <c:set var="error" value="false"/>
+        </c:if>
+        <!-- Checking the pin length should be exactly 9 characters and setting the error value to false -->
+        <c:if test="${pinLength != 9}">
+            <br> Pin Length should be exact 9 digits.
+            <c:set var="error" value="false"/>
+        </c:if>
+       <!--  Checking if the error condition is false then only errors will be shown and no output -->
+        <c:if test="${error == 'true'}">
+            <br>First Name: <c:out value="${firstName}"/>
+            <br>Last Name: <c:out value="${lastName}"/>
+            <br>Email id: <c:out value="${email}"/>
+            <br>Mobile Number: <c:out value="${phone}"/>
+            <br>Gender: <c:out value="${gender}"/>
+            <br>Date Of Birth: <c:out value="${dob}"/>
+            <br>Course: <c:out value="${course}"/>
+            <br>Address: <c:out value="${add1}"/>
+            <c:out value="${add2}"/>
+            <c:out value="${add3}"/>
+            <c:out value="${add4}"/>
+            <c:out value="${add5}"/>
+            <c:out value="${add6}"/>
+            <c:out value="${add7}"/>
+            <br>Marks in Class 12:
+            <br> Subject1: <c:out value="${marks1}"/>
+            <br> Subject2: <c:out value="${marks2}"/>
+            <br> Subject3: <c:out value="${marks3}"/>
+            <br> Subject4: <c:out value="${marks4}"/>
+            <br> Subject5: <c:out value="${marks5}"/>
+            <br><h4>Subject(s) in which student has first division:</h4> <br>
+            <!-- Checking for the first division criteria -->
+            <c:choose>
+                <c:when test="${marks1 > 60 || marks2 > 60 || marks3 > 60 || marks4 > 60 || marks5 > 60}">
+                    <c:if test="${marks1 > 60}">
+                        Subject 1
+                    </c:if>
+                    <c:if test="${marks2 > 60}">
+                        Subject 2
+                    </c:if>
+                    <c:if test="${marks3 > 60}">
+                        Subject 3
+                    </c:if>
+                    <c:if test="${marks4 > 60}">
+                        Subject 4
+                    </c:if>
+                    <c:if test="${marks5 > 60}">
+                        Subject 5
+                    </c:if>
+                </c:when>
+                <c:otherwise>
+                    No first division in any of the subject.
+                </c:otherwise>
+            </c:choose>
+            <br><br>
+            <h4>Subjects in which student has distinction: </h4>
+            <!-- checking for the distinction criteria -->
+            <c:choose>
+                <c:when test="${marks1 > 75 || marks2 > 75 || marks3 > 75 || marks4 > 75 || marks5 > 75}">
+                    <c:if test="${marks1 > 75}">
+                        Subject 1
+                    </c:if>
+                    <c:if test="${marks2 > 75}">
+                        Subject 2
+                    </c:if>
+                    <c:if test="${marks3 > 75}">
+                        Subject 3
+                    </c:if>
+                    <c:if test="${marks4 > 75}">
+                        Subject 4
+                    </c:if>
+                    <c:if test="${marks5 > 75}">
+                        Subject 5
+                    </c:if>
+                </c:when>
+                <c:otherwise>
+                    No distinction in any of the subject.
+                </c:otherwise>
+            </c:choose>
+            <br>
+           <!--  calculating the percentage -->
+            <h4>The percentage of the student is: </h4>
+            <c:set var="percentage" value="${(marks1 + marks2 + marks3 + marks4 + marks5)/5} %"/>
+            <c:out value="${percentage}"/>
+            <br>
+            <br>
+            <!-- checking the criteria for admission. A student fails if the course and min percentage doen't match -->
+            <c:choose>
+                <c:when test="${course == 'Computer Science' && (marks1 + marks2 + marks3 + marks4 + marks5)/5 > 95 }">
+                    Addmission In Computer Science
+                </c:when>
+                <c:when test="${course == 'Mathematical Science' && (marks1 + marks2 + marks3 + marks4 + marks5)/5 > 93 }">
+                    Addmission In Mathematical Science
+                </c:when>
+                <c:when test="${course == 'Political Science' && (marks1 + marks2 + marks3 + marks4 + marks5)/5 > 91 }">
+                    Addmission In Political  Science
+                </c:when>
+                <c:when test="${course == 'Mathematics' && (marks1 + marks2 + marks3 + marks4 + marks5)/5 > 89 }">
+                    Addmission In Mathematics
+                </c:when>
+                <c:when test="${course == 'History' && (marks1 + marks2 + marks3 + marks4 + marks5)/5 > 87 }">
+                    Addmission In History
+                </c:when>
+                <c:otherwise>
+                    Admission not possible
+                </c:otherwise>
+            </c:choose>
+        </c:if>
+    </body>
+</html>
+
+------------------------------------------  redirect.jsp -----------------------------------------------------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect Page</title>
+</head>
+<body>
+    <h2>Not eligible for Registration.</h2>
+    <h4>Marks in any of the subjects in less than 40.</h4>
+</body>
+</html>
