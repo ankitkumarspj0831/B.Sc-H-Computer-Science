@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSP Form</title>
+    <style>
+      body {
+        text-align: center;
+        margin-top: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="form.jsp" method="POST">
+      Name:
+      <input type="text" name="name" placeholder="Enter your name" />
+      <br />
+      <br />
+      Birth Date:
+      <input type="date" name="dob" />
+      <br />
+      <br />
+      Email:
+      <input type="email" name="email" placeholder="Enter your email" />
+      <br />
+      <br />
+      Gender:
+      <input type="radio" name="gender" value="Male" />Male
+      <input type="radio" name="gender" value="Female" />Female
+      <br />
+      <br />
+      Hobbies:
+      <input type="checkbox" name="hobby" value="Music"/> Music
+      <input type="checkbox" name="hobby" value="Sports"/> Sports
+      <input type="checkbox" name="hobby" value="Reading Books"/> Reading Books
+      <br />
+      <br />
+      <input type="submit" value="Submit Form" />
+    </form>
+  </body>
+</html>
