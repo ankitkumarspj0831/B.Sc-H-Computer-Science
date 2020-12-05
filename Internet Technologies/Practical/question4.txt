@@ -1,0 +1,8 @@
+WAP to display the use of following Sting methods:
+Split
+Format
+Join
+Replace
+Substring
+Trim
+CopyValueOf
