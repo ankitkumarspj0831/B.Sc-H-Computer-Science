@@ -1,0 +1,34 @@
+Create a STUDENT REGISTRATION FORM with following details:
+1. First Name – not to exceed 20 characters.
+2. Last Name – not to exceed 20 characters
+3. Email id – validate properly
+4. Mobile Number – 10 digits allowed
+5. Gender – Male/Female/Other ( keep any one as Default )
+6. Date of Birth – to be selected from drop down in dd/mm/yy format
+7. Address
+a. House number
+b. Street number
+c. Locality
+d. City - not to exceed 20 characters
+e. State - not to exceed 20 characters
+f. Country - not to exceed 20 characters
+g. Pin – exact 9 digits
+8. Course to which admission is sought ( Drop down list with 5 courses and Minimum
+percentage required for admission to that course)
+9. Marks in class XII
+a. Subject1 – only numeric
+b. Subject2 – only numeric
+c. Subject3– only numeric
+d. Subject4 – only numeric
+e. Subject5– only numeric
+If marks in any of the subject are less than 40, then student should be informed that
+registration is not possible by redirecting to another page displaying an appropriate
+message.
+After the student has pressed the submit button, display the following information :
+ All the data entered by the user
+ Subjects in which student has 1st division
+ Subjects in which student has distinction
+ Percentage
+ If the student can get admitted to the selected course or not
+Appropriate alert messages should get displayed wherever required. Validate all the fields
+in an appropriate manner using JSP.
