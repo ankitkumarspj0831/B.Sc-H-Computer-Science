@@ -1,0 +1,97 @@
+------------------------------------------- index.jsp -----------------------------------------------------------------
+<html>
+  <head>
+    <title>Input Form</title>
+    <style>
+        body{
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+  </head>
+  <body>
+    <form action="process.jsp" method="POST">
+      Name:
+      <input type="text" name="username" />
+      <br /><br />
+      Password:
+      <input type="text" name="password" />
+      <br /><br />
+      Age:
+      <input type="text" name="age" />
+      <br /><br />
+      <input type="submit" value="Submit Form" />
+    </form>
+  </body>
+</html>
+
+------------------------------------------ process.jsp -------------------------------------------------------------
+
+<html>
+  <body>
+    <h2>Using java bean in jsp</h2>
+    <% String username= request.getParameter("username"); %> <% String password=
+    request.getParameter("password"); %> <% int age=
+    Integer.parseInt(request.getParameter("age")); %>
+    <jsp:useBean id="test" class="action.Details">
+      <jsp:setProperty
+        property="username"
+        name="test"
+        value="<%= username %>"
+      />
+      <jsp:setProperty
+        property="password"
+        name="test"
+        value="<%= password %>"
+      />
+      <jsp:setProperty property="age" name="test" value="<%= age %>" />
+    </jsp:useBean>
+    Name:
+    <jsp:getProperty property="username" name="test" />
+    <br />
+    Password:
+    <jsp:getProperty property="password" name="test" />
+    <br />
+    Age:
+    <jsp:getProperty property="age" name="test" />
+    <br />
+  </body>
+</html>
+
+------------------------------------------------------------ Detials.java ----------------------------------------------------
+
+package action;
+
+public class Details implements java.io.Serializable {
+
+  // No arg constructor
+  public Details() {}
+
+  private String username = "";
+  private String password = "";
+  private int age = 0;
+
+  public String getUsername() {
+    return username;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public int getAge() {
+    return age;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public void setAge(int age) {
+    this.age = age;
+  }
+}
