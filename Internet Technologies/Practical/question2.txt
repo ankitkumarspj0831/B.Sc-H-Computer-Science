@@ -1,0 +1,2 @@
+WAP for taking details of a person - name, age and password using a form.
+Create a bean file and display the details.
