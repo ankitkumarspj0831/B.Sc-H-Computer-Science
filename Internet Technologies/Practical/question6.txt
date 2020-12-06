@@ -1,0 +1,19 @@
+Create a form for the inputting the following data :
+
+Name    	 -  validate for characters only
+DOB 				 - validate for correctness
+Gender ( radio button )
+Address 			 - cannot be empty
+Id  				 - numeric, 5 digits
+Roll number   - numeric, 6 digits
+Email id      - valid email
+Course   ( From Drop down list ) 
+Year ( From drop down list )
+Cultural club preferences - can select one or more via checkboxes
+
+Use Text boxes, radio buttons, check boxes, drop down lists as required. 
+Create a streamlined and neat form. 
+Make sure no field is left blank. Use appropriate alerts as and where required.
+Focus () function should be used as and when required.
+Data should get submitted via a SUBMIT button and reset using a RESET button.
+All the submitted information should be displayed using a text box on the same web page.
