@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Assignment 3</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      input[type="text"],
+      input[type="number"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+      }
+      label {
+        padding: 12px 12px 12px 0;
+        display: inline-block;
+      }
+      .submitclass {
+        background-color: #4caf50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .resetclass {
+        background-color: grey;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .validateclass {
+        background-color: hotpink;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+      div {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+      }
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: #888888;
+        padding-top: 50px;
+      }
+      .close {
+        position: absolute;
+        right: 35px;
+        top: 15px;
+        font-size: 40px;
+        font-weight: bold;
+        color: #f1f1f1;
+      }
+      .close:hover,
+      .close:focus {
+        color: #f44336;
+        cursor: pointer;
+      }
+      /* Add Zoom Animation */
+      .animate {
+        -webkit-animation: animatezoom 0.6s;
+        animation: animatezoom 0.6s;
+      }
+
+      @-webkit-keyframes animatezoom {
+        from {
+          -webkit-transform: scale(0);
+        }
+        to {
+          -webkit-transform: scale(1);
+        }
+      }
+
+      @keyframes animatezoom {
+        from {
+          transform: scale(0);
+        }
+        to {
+          transform: scale(1);
+        }
+      }
+    </style>
+    <script>
+      function func() {
+        document.getElementById("id01").style.display = "block";
+        document.getElementById("id1").innerHTML = document.myform.name.value;
+        document.getElementById("id2").innerHTML = document.myform.dob.value;
+        document.getElementById("id3").innerHTML = document.myform.gender.value;
+        document.getElementById("id4").innerHTML =
+          document.myform.address.value;
+        document.getElementById("id5").innerHTML = document.myform.id.value;
+        document.getElementById("id6").innerHTML = document.myform.roll.value;
+        document.getElementById("id7").innerHTML = document.getElementById(
+          "course"
+        ).value;
+        document.getElementById("id8").innerHTML = document.getElementById(
+          "year"
+        ).value;
+        var text = "";
+        for (var i = 0; i < 3; i++) {
+          if (document.myform.clubs[i].checked) {
+            text += "-" + document.myform.clubs[i].value + " ";
+          }
+        }
+        document.getElementById("id9").innerHTML = text;
+      }
+      function reseett() {
+        document.getElementById("myform").reset();
+        document.getElementById("div1").style.display = "none";
+      }
+      function isValid() {
+        var alertText = "";
+        var name = document.myform.name.value;
+        var letters = /^[A-Za-z\s]+$/;
+        if (name == "") {
+          alertText += "\n" + "Please enter a name.";
+          document.myform.name.focus();
+        } else if (name.match(letters)) {
+          // Valid Input
+        } else {
+          alertText +="\n" + "Please enter a valid name.";
+          document.myform.name.focus();
+        }
+        var dob = document.myform.dob.value;
+        if (dob == "") {
+          alertText += "\n" + "Please enter DOB.";
+          document.myform.dob.focus();
+        } else {
+          // Valid Input
+        }
+        var address = document.myform.address.value;
+        if (address == "") {
+          alertText += "\n" + "Address cannot be empty.";
+          document.myform.address.focus();
+        } else {
+          // Valid Input
+        }
+        var id = document.myform.id.value;
+        if (!isNaN(id) && id.length == 5) {
+          // Valid Input
+        } else {
+          alertText += "\n" + "Invalid Id.";
+          document.myform.id.focus();
+        }
+        var roll = document.myform.roll.value;
+        if (!isNaN(roll) && roll.length == 6) {
+          // Valid Input
+        } else {
+          alertText += "\n" + "Invalid Roll.";
+          document.myform.roll.focus();
+        }
+        var email = document.myform.email.value;
+        var atpos = email.indexOf("@");
+        var dotpos = email.lastIndexOf(".");
+        if (email == "") {
+          alertText += "\n" + "Enter E-mail id.";
+        } else {
+          if (atpos < 1 || dotpos - atpos < 2) {
+            alertText += "\n" + "Enter valid email-id.";
+            document.myform.email.focus();
+          } else {
+            // Valid Input
+          }
+        }
+        var course = document.myform.course.value;
+        if (course == "") {
+          alertText += "\n" + "Please select a course.";
+          document.myform.course.focus();
+        } else {
+          // Valid Input
+        }
+        var year = document.myform.year.value;
+        if (year == "") {
+          alertText += "\n" + "Please select a year.";
+          document.myform.year.focus();
+        } else {
+          // Valid Input
+        }
+        var text = "";
+        for (var i = 0; i < 3; i++) {
+          if (document.myform.clubs[i].checked) {
+            text += "-" + document.myform.clubs[i].value + " ";
+          }
+        }
+        if (text == "") {
+          alertText += "\n" + "Please select at-least one checkbox.";
+        } else {
+          // Valid Input
+        }
+        if(alertText == "") {
+          if(window.confirm("Validation Successful."+ "\n" + "Do you want to submit?")) {
+            func();
+          } else {
+            // Do nothing
+          }
+        } else {
+          alert("Invalid Input:" + alertText);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div>
+      <form name="myform" id="myform">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          name="name"
+          placeholder="Your name..."
+          value=""
+          id="name"
+          style="width: 350px"
+          autofocus
+        />
+        <br />
+        <label for="dob">Date Of Birth</label>
+        <input type="date" name="dob" id="dob" value="" />
+        <br />
+        <label for="gender">Gender</label>
+        <input type="radio" name="gender" value="Male" checked /> Male
+        <input type="radio" name="gender" value="Female" /> Female
+        <input type="radio" name="gender" value="Others" /> Others
+        <br />
+        <label for="address">Address</label>
+        <br />
+        <textarea
+          id="address"
+          name="address"
+          placeholder="Your address.."
+          style="height: 60px; width: 500px"
+        ></textarea>
+        <br />
+        <label for="id">ID</label>
+        <br />
+        <input
+          type="text"
+          name="id"
+          id="id"
+          placeholder="Your Id.."
+          style="width: 250px"
+        />
+        <br />
+        <label for="roll">Roll Number</label><br />
+        <input
+          type="text"
+          name="roll"
+          id="roll"
+          style="width: 150px"
+          placeholder="Your roll.."
+        />
+        <br />
+        <label for="email">Email</label><br />
+        <input
+          type="text"
+          name="email"
+          id="email"
+          style="width: 200px"
+          placeholder="Your email..."
+          value=""
+        />
+        <br />
+        <label for="course">Couse</label>
+        <br />
+        <select style="width: 220px" id="course" name="course">
+          <option value="" selected disabled>Choose Course</option>
+          <option value="B.Sc(H) Computer Science">
+            B.Sc(H) Computer Science
+          </option>
+          <option value="B.Sc Mathematical Science">
+            B.Sc Mathematical Science
+          </option>
+          <option value="B.A Political Science">B.A Political Science</option>
+          <option value="B.Com Hons">B.Com Hons</option>
+        </select>
+        <br />
+        <label for="year">Year</label>
+        <br />
+        <select id="year" name="year" style="width: 220px">
+          <option selected disabled value="">Choose Year</option>
+          <option value="1st Year">1st Year</option>
+          <option value="2nd Year">2nd Year</option>
+          <option value="3rd Year">3rd Year</option>
+        </select>
+        <br />
+        <label for="club">Cultural Club Preferences</label>
+        <br />
+        <input type="checkbox" name="clubs" value="Rudra" /> Rudra
+        <input type="checkbox" name="clubs" value="Kaizen" /> Kaizen
+        <input type="checkbox" name="clubs" value="Enactus" /> Enactus
+        <br />
+        <hr />
+        <input
+          type="button"
+          value="Validate"
+          class="submitclass"
+          id="validate"
+          onclick="isValid()"
+        />
+        <input
+          type="button"
+          onclick="reseett()"
+          value="Reset Form"
+          class="resetclass"
+        />
+        <hr />
+      </form>
+      <div id="id01" class="modal">
+        <span
+          onclick="document.getElementById('id01').style.display='none'"
+          class="close"
+          title="Close Modal"
+          >&times;</span
+        >
+        <div class="container animate">
+          <h2 style="text-align: center"><i>Summary</i></h2>
+          <p><b>Name: </b><span id="id1"></span></p>
+          <p><b>Date Of Birth: </b><span id="id2"></span></p>
+          <p><b>Gender: </b><span id="id3"></span></p>
+          <p><b>Address: </b><span id="id4"></span></p>
+          <p><b>Id: </b><span id="id5"></span></p>
+          <p><b>Roll No: </b><span id="id6"></span></p>
+          <p><b>Course: </b><span id="id7"></span></p>
+          <p><b>Year: </b><span id="id8"></span></p>
+          <p><b>Cultural Club Preferences: </b><span id="id9"></span></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
